@@ -1,5 +1,8 @@
-using MeterService.Data;
 using Microsoft.EntityFrameworkCore;
+using ReportService.BackgroundServices;
+using ReportService.Data;
+using ReportService.Producers;
+using ReportService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,12 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ReportDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+builder.Services.AddHttpClient<MeterServiceHttpClient>();
+builder.Services.AddHostedService<ReportProcessingService>();
+
+builder.Services.AddScoped<ReportRequestProducer>();
 
 builder.Services.AddAuthorization();
 
