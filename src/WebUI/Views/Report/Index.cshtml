@@ -21,7 +21,7 @@
       @if (Model != null)
       {
         var index = 0;
-        foreach (var report in Model.OrderByDescending(x => x.RequestedAt))
+        foreach (var report in Model.OrderByDescending(x => x.RequestedAt).Take(10))
         {
           <tr>
             <td>@(++index)</td>

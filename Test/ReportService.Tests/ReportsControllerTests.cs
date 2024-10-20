@@ -51,7 +51,7 @@ namespace ReportService.Tests
     [Fact]
     public void GetReport_ShouldReturnNotFound_WhenReportDoesNotExist()
     {
-      var result = _controller.GetReport(Guid.NewGuid());
+      var result = _controller.GetReport("13544544");
 
       Assert.IsType<NotFoundResult>(result);
     }
