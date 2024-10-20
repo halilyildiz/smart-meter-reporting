@@ -1,0 +1,13 @@
+﻿@model MeterResponse
+
+@if (Model != null)
+{
+  <tr>
+    <td>1</td>
+    <td>@Model.MeasurementTime</td>
+    <td>@Model.MeterSerialNumber</td>
+    <td>@Model.LastIndex</td>
+    <td>@Model.Voltage</td>
+    <td>@Model.Current</td>
+  </tr>
+}

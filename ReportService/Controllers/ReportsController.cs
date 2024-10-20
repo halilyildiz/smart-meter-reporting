@@ -35,13 +35,10 @@ namespace MeterService.Controllers
       return Ok(reports);
     }
 
-    [HttpGet("{serialNumber}")]
-    public ActionResult GetReport(string serialNumber)
-    {  
-      var report = _context.Reports
-          .Where(x => x.MeterSerialNumber == serialNumber && x.Status == (int)EReportState.Completed)
-          .OrderByDescending(x => x.RequestedAt)
-          .FirstOrDefault();
+    [HttpGet("{reportId}")]
+    public ActionResult GetReport(Guid reportId)
+    {
+      var report = _context.Reports.FirstOrDefault(x => x.Id == reportId);
 
       if (report == null)
       {
