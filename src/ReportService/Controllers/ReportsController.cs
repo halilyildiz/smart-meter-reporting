@@ -6,7 +6,7 @@ using ReportService.Entities;
 using ReportService.Enumerations;
 using ReportService.Producers;
 
-namespace MeterService.Controllers
+namespace ReportService.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
@@ -48,14 +48,12 @@ namespace MeterService.Controllers
         return NotFound();
       }
 
-      // Dosya yolunu kontrol edin
       var filePath = Path.Combine(Directory.GetCurrentDirectory(), report.DocumentPath); 
       if (string.IsNullOrEmpty(filePath) || !System.IO.File.Exists(filePath))
       {
         return NotFound("File not found");
       }
 
-      // Dosyayı döndür (PhysicalFile)
       var contentType = "application/octet-stream";
       var fileName = Path.GetFileName(filePath); 
       return PhysicalFile(filePath, contentType, fileName);

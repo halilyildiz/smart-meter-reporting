@@ -1,0 +1,46 @@
+﻿@using WebUI.Enumerations
+@model ReportResponse[]
+
+@{
+  ViewData["Title"] = "Rapor İşlemleri";
+}
+
+<div class="container mt-5">
+  <h2>Rapor Listesi</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Sayaç Numarası</th>
+        <th>Talep Tarihi</th>
+        <th>Durumu</th>
+        <th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (Model != null)
+      {
+        var index = 0;
+        foreach (var report in Model.OrderByDescending(x => x.RequestedAt))
+        {
+          <tr>
+            <td>@(++index)</td>
+            <td>@report.MeterSerialNumber</td>
+            <td>@report.RequestedAt</td>
+            <td>@(report.Status == (int)EReportState.Completed ? "Tamamlandı" : "Hazırlanıyor") </td>
+            <td>
+              @if (report.Status == (int)EReportState.Completed)
+              {
+                <a onclick="DownloadReport('@report.Id')" class="btn btn-info">Raporu İndir</a>
+              }
+              else
+              {
+                <span>-</span>
+              }
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
