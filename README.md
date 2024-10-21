@@ -20,7 +20,7 @@ Proje üç ana mikroservisten oluşmaktadır:
 
 ### Gereksinimler
 
-- .NET SDK 7.0+
+- .NET SDK 8.0
 - Docker
 - RabbitMQ
 - MsSQL
