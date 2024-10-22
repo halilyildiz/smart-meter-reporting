@@ -7,19 +7,13 @@ namespace ReportService.Producers
   public class ReportRequestProducer
   {
     private readonly IConnection _connection;
+    private readonly IConnectionFactory _connectionFactory;
     private readonly IModel _channel;
 
-    public ReportRequestProducer()
+    public ReportRequestProducer(IConnectionFactory connectionFactory)
     {
-      var factory = new ConnectionFactory()
-      {
-        HostName = "localhost",      
-        Port = 5672,                 
-        UserName = "guest",          
-        Password = "guest"          
-      };
-
-      _connection = factory.CreateConnection();
+      _connectionFactory = connectionFactory;
+      _connection = _connectionFactory.CreateConnection();
       _channel = _connection.CreateModel();
       _channel.QueueDeclare(queue: "reportQueue",
                            durable: false,

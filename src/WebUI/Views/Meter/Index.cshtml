@@ -40,21 +40,21 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Sayaç Verisi Ekle</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="meterForm">
-          <input type="text" id="serialNumber" placeholder="Seri Numarası">
-          <input type="text" id="lastIndex" placeholder="Son Endeks">
-          <input type="text" id="voltage" placeholder="Voltaj">
-          <input type="text" id="current" placeholder="Akım">
-          <input type="datetime-local" id="measurementTime" placeholder="Ölçüm Zamanı">
-        </form>
+        <div id="meterForm"  class="form-row">
+          <input class="form-control mt-2" type="text" id="serialNumber" placeholder="Seri Numarası">
+          <input class="form-control mt-2" type="text" id="lastIndex" placeholder="Son Endeks">
+          <input class="form-control mt-2" type="text" id="voltage" placeholder="Voltaj">
+          <input class="form-control mt-2" type="text" id="current" placeholder="Akım">
+          <input class="form-control mt-2" type="datetime-local" id="measurementTime" placeholder="Ölçüm Zamanı">
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-        <button type="button" class="btn btn-primary" onclick="SaveMeterData()">Veriyi Kaydet</button>
+        <button type="button" class="btn btn-primary" onclick="SaveMeterData()">Kaydet</button>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RabbitMQ.Client;
 using ReportService.Controllers;
 using ReportService.Data;
 using ReportService.Entities;
@@ -34,8 +35,17 @@ namespace ReportService.Tests
             });
       _context.SaveChanges();
 
-      var producer = new ReportRequestProducer();
-      _controller = new ReportsController(_context, producer);
+      var factory = new ConnectionFactory
+      {
+        HostName = "localhost",
+        UserName = "guest",
+        Password = "guest",
+        Port = 5672,
+        VirtualHost = "/"
+      };
+
+      var reportRequestProducer = new ReportRequestProducer(factory);
+      _controller = new ReportsController(_context, reportRequestProducer);
     }
 
     [Fact]
